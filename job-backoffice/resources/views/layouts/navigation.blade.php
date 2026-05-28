@@ -14,26 +14,40 @@
             Dashboard
         </x-nav-link>
 
-        <x-nav-link href="{{route('company.index')}}" :active="request()->routeIs('company.index')">
-            Companies
-        </x-nav-link>
+        @if(auth()->user()->role == 'admin')
+            <x-nav-link href="{{route('companies.index')}}" :active="request()->routeIs('company.index')">
+                Companies
+            </x-nav-link>
+        @endif
+        <!-- my company -->
+        @if(auth()->user()->role == 'company-owner')
+            <x-nav-link href="{{route('my-company.show')}}" :active="request()->routeIs('my-company.show')">
+                My Company
+            </x-nav-link>
+        @endif
 
-        <x-nav-link href="{{route('application.index')}}" :active="request()->routeIs('application.index')">
+
+        <x-nav-link href="{{route('job-applications.index')}}" :active="request()->routeIs('application.index')">
             Job Applications
         </x-nav-link>
 
-        <x-nav-link href="{{route('category.index')}}" :active="request()->routeIs('job-category.index')">
-            Job Categories
-        </x-nav-link>
+        @if(auth()->user()->role == 'admin')
+        
+            <x-nav-link href="{{route('job-categories.index')}}" :active="request()->routeIs('job-categories.index')">
+                Job Categories
+            </x-nav-link>
+        
+        @endif
 
-        <x-nav-link href="{{route('vacancy.index')}}" :active="request()->routeIs('vacancy.index')">
+        <x-nav-link href="{{route('job-vacancies.index')}}" :active="request()->routeIs('vacancy.index')">
             Job Vacancies
         </x-nav-link>
 
-        <x-nav-link href="{{route('user.index')}}" :active="request()->routeIs('user.index')">
-            Users
-        </x-nav-link>
-    
+        @if(auth()->user()->role == 'admin')
+            <x-nav-link href="{{route('users.index')}}" :active="request()->routeIs('user.index')">
+                Users
+            </x-nav-link>
+        @endif
 
         <!-- logout -->
         <hr/>

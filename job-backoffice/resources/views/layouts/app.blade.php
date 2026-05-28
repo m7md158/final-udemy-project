@@ -15,6 +15,20 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased">
+
+        <!-- alert -->
+        @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        @if(session('error'))
+            <div class="bg-red-500 text-white p-3 rounded text-center">
+                {{ session('error') }}
+            </div>
+        @endif
+            
         <div class="flex">
             @include('layouts.navigation')
 
